@@ -1,7 +1,12 @@
 const gridContainer = document.querySelector('.gridContainer');
 
-for (let index = 0; index < 16; index++) {
-    const div = document.createElement('div');
-    div.classList.add('grid')
-    gridContainer.appendChild(div);
+for (let column = 1; column <= 16; column++) {
+    for (let row = 1; row <= 16; row++) {
+        const div = document.createElement('div');
+        div.classList.add('grid')
+        div.textContent = `.`
+        gridContainer.appendChild(div);
+    }
 }
+
+    
