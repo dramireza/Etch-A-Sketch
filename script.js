@@ -1,5 +1,11 @@
-function changeSize() {
-    let size = window.prompt('Size');
+function changeSize(prompt = 'Enter a number between 1 and 100, to make a new grid.') {
+    let size = window.prompt(prompt);
+    if (size===null)return;
+    size=parseInt(size);
+    if (!(size>0&&size<=100)){
+        changeSize('Input invalid, please enter a number between 1 and 100, to make a new grid.');
+        return;
+    }
     drawGrid(size)
 }
 
