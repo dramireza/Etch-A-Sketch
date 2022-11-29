@@ -29,10 +29,33 @@ function drawGrid(size = 16) {
     const grids = document.querySelectorAll('.grid');
     grids.forEach(grid => {
         grid.addEventListener('mouseover', (e) => {
+            if (!grid.classList.contains('active')){
             grid.classList.add('active')
+            let rgbColor = randomRGB();
+            grid.style.backgroundColor =  `rgb(${rgbColor.r},${rgbColor.g},${rgbColor.b})`;
+            } else {
+                let rgbSet = grid.style.backgroundColor.match(/\d+/g);
+                let newRGB = darkenRGB(rgbSet[0],rgbSet[1],rgbSet[2]);
+                grid.style.backgroundColor =  `rgb(${newRGB.newR},${newRGB.newG},${newRGB.newB})`;
+            }
+            
         })
     });
 
+}
+
+function randomRGB(){
+    let r = Math.floor(Math.random()*256);
+    let g = Math.floor(Math.random()*256);
+    let b = Math.floor(Math.random()*256);
+    return {r,g,b} 
+}
+
+function darkenRGB(r,g,b){
+    newR = r * (1 - 0.5);
+    newG = g * (1 - 0.5);
+    newB = b * (1 - 0.5);
+    return {newR, newB, newG}
 }
 
 drawGrid();
